@@ -1,0 +1,6 @@
+{
+    "python.jediEnabled": false,
+    "python.linting.enabled": false,
+    "suggest.noselect": true,
+    "suggest.minTriggerInputLength": 2
+}
