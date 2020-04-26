@@ -49,8 +49,9 @@ Plug 'preservim/nerdtree'
 " Nerd commentor
 Plug 'preservim/nerdcommenter'
 
-" Light reading mode
+" Reading mode
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " REPL for python
 Plug 'sillybun/vim-repl'
@@ -58,6 +59,9 @@ Plug 'sillybun/vim-repl'
 call plug#end()
 "
 "-----------------------------------
+
+" Set leader to spacebar
+let mapleader = "\<Space>" 
 
 " Indentation settings for using 4 spaces instead of tabs.
 set shiftwidth=4
@@ -124,11 +128,11 @@ set confirm
 :set number relativenumber
 
 " Toggle off relative line number when not in buffer
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-:augroup END
+":augroup numbertoggle
+":  autocmd!
+":  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+":  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+":augroup END
 
 " Set syntax highlighting
 syntax on
@@ -156,8 +160,14 @@ nmap - ddp
 " Remove trailing whitespace
 nnoremap rws :%s/\s\+$//e
 
-" Set 9 to write the time
-nnoremap 9 :pu=strftime('%d-%m-%y')<enter>
+" To write the time
+nnoremap <leader>gd :pu=strftime('%d-%m-%y')<enter>
+
+" Get current filepath in clipboard
+nnoremap <leader>gfp :let @+=@%<CR>
+
+" Open vimrc
+nnoremap <leader>ovrc :vsplit ~/.vimrc<CR>
 
 " Set cursor line
 set cursorline
@@ -168,9 +178,6 @@ set undodir=~/.vim/undodir
 let s:undos = split(globpath(&undodir, '*'), "\n")
 call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
 call map(s:undos, 'delete(v:val)')
-
-" Set leader to spacebar
-let mapleader = "\<Space>" 
 
 "--------------------------------
 " ALE settings
@@ -368,6 +375,16 @@ autocmd Filetype python nnoremap <F8> <Esc>:REPLPDBS<Cr>
 let NERDTreeQuitOnOpen=1
 nnoremap VE :NERDTreeFind<CR>
 "nnoremap <C-n> :NERDTreeToggle<CR>
+
+"------------------------------------------------------------
+"" Limelight
+"------------------------------------------------------------
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+nmap <Leader>ll <Plug>(Limelight)
+xmap <Leader>ll <Plug>(Limelight)
 
 "------------------------------------------------------------
 "" Custom functions
