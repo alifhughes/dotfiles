@@ -128,7 +128,7 @@ function grfb() {
 
 # Tmux shortcut
 # tells tmux that utf-8 is supported
-alias tmux='tmux -u'
+#alias tmux='tmux -u'
 
 # Grep short cuts
 function grp() {
