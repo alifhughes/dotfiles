@@ -19,11 +19,8 @@ Plug 'dense-analysis/ale'
 Plug 'bling/vim-airline'
 
 " fzf for vim
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Swap splits
-Plug 'wesQ3/vim-windowswap'
 
 " Navigate vim and tmux seamlessly
 Plug 'christoomey/vim-tmux-navigator'
@@ -169,6 +166,9 @@ nnoremap <leader>gfp :let @+=@%<CR>
 " Open vimrc
 nnoremap <leader>ovrc :vsplit ~/.vimrc<CR>
 
+noremap Zz <c-w>_ \| <c-w>\|
+noremap Zo <c-w>=
+
 " Set cursor line
 set cursorline
 
@@ -268,39 +268,13 @@ let python_highlight_all=1
 "" FZF.vim settings
 "------------------------------------------------------------
 
-" Something to make it work
-set rtp+=/usr/local/opt/fzf
-
 " Ctrl p to find files
 nnoremap <C-p> :Files<Cr>
 
 " Ctrl o to find in files
-"command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 nnoremap <C-o> :Ag<Cr>
 
-" Ctrl h to find in history
-"nnoremap <C-h> :History/<Cr>
-
-" fzf yank
-function! s:get_registers() abort
-  redir => l:regs
-  silent registers
-  redir END
-
-  return split(l:regs, '\n')[1:]
-endfunction
-
-function! s:registers(...) abort
-  let l:opts = {
-        \ 'source': s:get_registers(),
-        \ 'sink': {x -> feedkeys(matchstr(x, '\v^\S+\ze.*') . (a:1 ? 'P' : 'p'), 'x')},
-        \ 'options': '--prompt="Reg> "'
-        \ }
-  call fzf#run(fzf#wrap(l:opts))
-endfunction
-
-command! -bang Registers call s:registers('<bang>' ==# '!')
-
+" Floating window preview
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 "------------------------------------------------------------
@@ -396,23 +370,6 @@ xmap <Leader>ll <Plug>(Limelight)
 "------------------------------------------------------------
 "" Custom functions
 "------------------------------------------------------------
-
-" Gets error message
-"function! TabMessage(cmd) abort
-  "redir => message
-  "silent execute a:cmd
-  "redir END
-  "if empty(message)
-    "echohl Error
-    "echo "no output"
-    "echohl None
-  "else
-    "new
-    "setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
-    "silent put=message
-  "endif
-"endfunction
-"command! -nargs=+ -complete=command  TabMessage call TabMessage(<q-args>)
 
 " Run unit tests
 nnoremap <leader>ta :call term_start('./run-unit-tests.sh', {'cwd': 'lambdas', 'vertical': 1})<CR>

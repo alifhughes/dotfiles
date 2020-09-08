@@ -223,3 +223,5 @@ unset __conda_setup
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias config='/usr/bin/git --git-dir=/Users/alistair.hughes/.cfg/ --work-tree=/Users/alistair.hughes'
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
