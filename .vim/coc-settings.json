@@ -2,5 +2,12 @@
     "python.jediEnabled": false,
     "python.linting.enabled": false,
     "suggest.noselect": true,
-    "suggest.minTriggerInputLength": 2
+    "suggest.minTriggerInputLength": 2,
+    "coc.preferences.rootPatterns": [
+        ".env",
+        "Pipefile",
+        ".git",
+        ".hg",
+        ".projections.json"
+    ]
 }

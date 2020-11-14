@@ -44,7 +44,8 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+ZSH_DISABLE_COMPFIX=true
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -65,7 +66,6 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git zsh-autosuggestions
 )
-
 
 source $ZSH/oh-my-zsh.sh
 
@@ -185,9 +185,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+#if command -v pyenv 1>/dev/null 2>&1; then
+  #eval "$(pyenv init -)"
+#fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -225,3 +225,4 @@ unset __conda_setup
 alias config='/usr/bin/git --git-dir=/Users/alistair.hughes/.cfg/ --work-tree=/Users/alistair.hughes'
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+

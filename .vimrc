@@ -37,11 +37,13 @@ Plug 'honza/vim-snippets'
 " Markdown
 Plug 'shime/vim-livedown'
 
-" Autocomplete
+" Coc - autocomplete n more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-python'
 
 " Nerd tree
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Nerd commentor
 Plug 'preservim/nerdcommenter'
@@ -160,6 +162,9 @@ nnoremap rws :%s/\s\+$//e
 " To write the time
 nnoremap <leader>gd :pu=strftime('%d-%m-%y')<enter>
 
+" To fix spelling of word under cursor (choose first option)
+nnoremap <leader>tt 1z=
+
 " Get current filepath in clipboard
 nnoremap <leader>gfp :let @+=@%<CR>
 
@@ -272,10 +277,16 @@ let python_highlight_all=1
 nnoremap <C-p> :Files<Cr>
 
 " Ctrl o to find in files
-nnoremap <C-o> :Ag<Cr>
+nnoremap <leader>o :Ag<Cr>
 
 " Floating window preview
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" Ignore files in .gitingore
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+" Exclude filenames and numbers in :Ag
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 "------------------------------------------------------------
 "" LiveDown
@@ -331,6 +342,9 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Run selected in python repl
+vnoremap <leader>rr :CocCommand python.execSelectionInTerminal<cr>
+
 "------------------------------------------------------------
 "" VIM-REPL
 "------------------------------------------------------------
@@ -348,7 +362,7 @@ autocmd Filetype python nnoremap <F8> <Esc>:REPLPDBS<Cr>
 
 let NERDTreeQuitOnOpen=1
 nnoremap VE :NERDTreeFind<CR>
-"nnoremap <C-n> :NERDTreeToggle<CR>
+""nnoremap <C-n> :NERDTreeToggle<CR>
 
 "------------------------------------------------------------
 "" Fugitive
