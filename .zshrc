@@ -185,9 +185,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#if command -v pyenv 1>/dev/null 2>&1; then
-  #eval "$(pyenv init -)"
-#fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`

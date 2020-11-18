@@ -361,6 +361,7 @@ autocmd Filetype python nnoremap <F8> <Esc>:REPLPDBS<Cr>
 "------------------------------------------------------------
 
 let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 nnoremap VE :NERDTreeFind<CR>
 ""nnoremap <C-n> :NERDTreeToggle<CR>
 
