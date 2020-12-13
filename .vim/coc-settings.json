@@ -5,9 +5,6 @@
     "suggest.minTriggerInputLength": 2,
     "coc.preferences.rootPatterns": [
         ".env",
-        "Pipefile",
-        ".git",
-        ".hg",
-        ".projections.json"
+        "Pipefile"
     ]
 }

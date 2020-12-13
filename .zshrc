@@ -226,3 +226,5 @@ alias config='/usr/bin/git --git-dir=/Users/alistair.hughes/.cfg/ --work-tree=/U
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
+
+export PATH="$HOME/.poetry/bin:$PATH"

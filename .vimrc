@@ -15,9 +15,6 @@ call plug#begin('~/.vim/plugged')
 " Linting
 Plug 'dense-analysis/ale'
 
-" Airline tag plugin
-Plug 'bling/vim-airline'
-
 " fzf for vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -66,6 +63,9 @@ let mapleader = "\<Space>"
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+" Start scrolling when cursor is two before top or bottom
+set scrolloff=2
 
 " Don't create a swap file
 set noswapfile
