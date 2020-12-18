@@ -15,6 +15,12 @@ call plug#begin('~/.vim/plugged')
 " Linting
 Plug 'dense-analysis/ale'
 
+" Airline tag plugin
+Plug 'vim-airline/vim-airline'
+
+" Debugging
+Plug 'puremourning/vimspector'
+
 " fzf for vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -104,8 +110,9 @@ set backspace=indent,eol,start
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
 
-" Set paste option toggle when copying from system
-set pastetoggle=<F10>
+" Set paste option toggle when copying from system TODO NEED TO CHANGE NOW GOT
+" VIMSPECTOR DEBUGGERS
+"set pastetoggle=<F10>
 
 " Set copy and paste in visual mode
 vnoremap <C-c> :w !pbcopy<CR><CR>
@@ -136,11 +143,11 @@ set confirm
 " Set syntax highlighting
 syntax on
 
-" Make the 81st column stand out
-highlight ColorColumn ctermbg=magenta
-"
+" Make the 88th column stand out
+"highlight ColorColumn ctermbg=magenta
+
 " regex you are at the first line virtually 
-call matchadd('ColorColumn', '\%88v', 88)
+"call matchadd('ColorColumn', '\%88v', 88)
 
 " Show trailing tabs and white spaces
 set listchars=tab:>~,nbsp:_,trail:.
@@ -387,7 +394,16 @@ xmap <Leader>ll <Plug>(Limelight)
 "------------------------------------------------------------
 
 " Run unit tests
-nnoremap <leader>ta :call term_start('./run-unit-tests.sh', {'cwd': 'lambdas', 'vertical': 1})<CR>
+nnoremap <leader>ta :call term_start('./run-unit-tests.sh', {'vertical': 1})<CR>
+"nnoremap <leader>ta :call term_start('./run-unit-tests.sh', {'cwd': 'lambdas', 'vertical': 1})<CR>
 
 " Convert to function to prettify, but runs current test under the cursor
-nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s?lambdas/??')  . '::' . expand('<cword>'), {'cwd': 'lambdas', 'vertical': 1})<CR>
+nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s?lambdas/??')  . '::' . expand('<cword>'), {'vertical': 1})<CR>
+"nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s?lambdas/??')  . '::' . expand('<cword>'), {'cwd': 'lambdas', 'vertical': 1})<CR>
+
+
+"------------------------------------------------------------
+"" Vimspector debugging
+"------------------------------------------------------------
+
+let g:vimspector_enable_mappings = 'HUMAN'
