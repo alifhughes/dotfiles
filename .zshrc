@@ -228,3 +228,17 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Allow poetry to load .env on shell spawn files like pipenv, see here: https://github.com/python-poetry/poetry/issues/337#issuecomment-660549880
+function poetry() {
+    # if POETRY_DONT_LOAD_ENV is *not* set, then load .env if it exists
+    if [[ -z "$POETRY_DONT_LOAD_ENV" && -f .env ]]; then
+        echo 'Loading .env environment variables…'
+        export $(grep -v '^#' .env | tr -d ' ' | xargs)
+        command poetry "$@"
+        unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
+    else
+        command poetry "$@"
+    fi
+}
+

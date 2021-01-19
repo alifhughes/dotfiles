@@ -94,7 +94,9 @@ set t_Co=256
 
 " Colorscheme
 colorscheme distinguished
-"colorscheme iceberg
+
+" default colorscheme switcher, when opening markdown it switches to default
+noremap <leader>dc :colorscheme distinguished<CR>
 
 " Set the history of commands
 set history=1000
@@ -223,17 +225,18 @@ nnoremap S :w<enter>
 " Set syntax to markdown
 nnoremap MD :set syntax=markdown
 
-" Set md filetype as markdown
-au BufNewFile,BufFilePre,BufRead *.markdown
-    \ colorscheme default  |
-    \ syntax on
-au BufNewFile,BufFilePre,BufRead *.md
-    \ colorscheme default  |
-    \ syntax on
+:augroup markdownstyling
+:  au!
+:  au BufNewFile,BufFilePre,BufRead *.markdown,*.md colorscheme default
+:  au BufNewFile,BufFilePre,BufRead *.markdown,*.md syntax on
+:  au BufNewFile,BufFilePre,BufRead *.markdown,*.md highlight clear SpellBad
+:  au BufNewFile,BufFilePre,BufRead *.markdown,*.md highlight SpellBad cterm=underline,bold ctermfg=blue
+:augroup END
 
 " remap :cl to console log depending on file type, show appropiate debugging
 autocmd FileType javascript map <Leader>cl yiwoconsole.log('<c-r>"', <c-r>");<Esc>^
 autocmd FileType php nmap <Leader>cl yiwodie(var_dump('<c-r>"', $<c-r>"));<Esc>^
+autocmd FileType python nmap <Leader>cl yiwoprint(f"<c-r>"= {<c-r>"}")<Esc>^
 
 "------------------------------------------------------------
 "" Highlighting settings
@@ -403,7 +406,46 @@ nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s
 
 
 "------------------------------------------------------------
+"" Buffer
+"------------------------------------------------------------
+
+nmap <leader>sb <C-w>x
+
+"------------------------------------------------------------
 "" Vimspector debugging
 "------------------------------------------------------------
 
 let g:vimspector_enable_mappings = 'HUMAN'
+
+"------------------------------------------------------------
+"" Vimspector debugging
+"------------------------------------------------------------
+
+let s:wrapenabled = 0
+function! ToggleWrap()
+  set wrap nolist
+  if s:wrapenabled
+    set nolinebreak
+    unmap j
+    unmap k
+    unmap 0
+    unmap ^
+    unmap $
+    let s:wrapenabled = 0
+  else
+    set linebreak
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap 0 g0
+    nnoremap ^ g^
+    nnoremap $ g$
+    vnoremap j gj
+    vnoremap k gk
+    vnoremap 0 g0
+    vnoremap ^ g^
+    vnoremap $ g$
+    let s:wrapenabled = 1
+  endif
+endfunction
+map <leader>ww :call ToggleWrap()<CR>
+
