@@ -90,11 +90,12 @@ alias cx=chromium --user-data-dir $(mktemp -d)
 alias weather='curl wttr.in/$CITY'
 
 # Vim short cuts
-alias v='vim'
-alias vtd='vim ~/Desktop/todo.markdown'
-alias vrc='vim ~/.vimrc'
-alias vzrc='vim ~/.zshrc'
-alias vcd='vim ~/Desktop/code.markdown'
+alias v='nvim'
+alias vtd='nvim ~/Desktop/todo.markdown'
+alias vcd='nvim ~/Desktop/code.markdown'
+alias vrc='nvim ~/.config/nvim/init.vim'
+alias vrc='nvim ~/.vimrc'
+alias vzrc='nvim ~/.zshrc'
 
 # Python ctags
 alias pt='ctags -R --exclude=.git --exclude=node_modules --exclude=lambdas/deploy --exclude=.venv --exclude=.tox --exclude="*.html" --exclude="*.xml" --exclude="*.pyc" --exclude="*.json" --exclude="*.js" --extras=+f .'
@@ -242,3 +243,6 @@ function poetry() {
     fi
 }
 
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"

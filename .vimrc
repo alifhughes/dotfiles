@@ -135,13 +135,6 @@ set confirm
 " turn hybrid line numbers on
 :set number relativenumber
 
-" Toggle off relative line number when not in buffer
-":augroup numbertoggle
-":  autocmd!
-":  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-":  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-":augroup END
-
 " Set syntax highlighting
 syntax on
 
@@ -174,12 +167,16 @@ nnoremap <leader>gd :pu=strftime('%d-%m-%y')<enter>
 " To fix spelling of word under cursor (choose first option)
 nnoremap <leader>tt 1z=
 
+" Remap S to :w (save) as S is the same as cc
+nnoremap S :w<enter>
+
 " Get current filepath in clipboard
 nnoremap <leader>gfp :let @+=@%<CR>
 
 " Open vimrc
 nnoremap <leader>ovrc :vsplit ~/.vimrc<CR>
 
+" Make current split full screen and close again
 noremap Zz <c-w>_ \| <c-w>\|
 noremap Zo <c-w>=
 
@@ -215,12 +212,10 @@ let g:ale_linters = {
 let g:ale_python_flake8_options="--max-line-length=88"
 
 nnoremap <Leader>f :ALEFix<cr>
+
 "--------------------------------
-" Explore settings
+" Markdown settings
 "--------------------------------
-" Open explorer
-" Remap S to :w (save) as S is the same as cc
-nnoremap S :w<enter>
 
 " Set syntax to markdown
 nnoremap MD :set syntax=markdown
@@ -404,11 +399,18 @@ nnoremap <leader>ta :call term_start('./run-unit-tests.sh', {'vertical': 1})<CR>
 nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s?lambdas/??')  . '::' . expand('<cword>'), {'vertical': 1})<CR>
 "nnoremap <leader>t :call term_start('pipenv run python -m pytest ' . expand('%:s?lambdas/??')  . '::' . expand('<cword>'), {'cwd': 'lambdas', 'vertical': 1})<CR>
 
+"------------------------------------------------------------
+"" SnipMate
+"------------------------------------------------------------
+
+" Use new SnipMate
+let g:snipMate = { 'snippet_version' : 1 }
 
 "------------------------------------------------------------
 "" Buffer
 "------------------------------------------------------------
 
+" Swap buffers
 nmap <leader>sb <C-w>x
 
 "------------------------------------------------------------
