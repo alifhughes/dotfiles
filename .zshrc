@@ -190,37 +190,11 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/sls.zsh
-
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/alistair.hughes/Documents/Code/PredictModelsApi/lambdas/node_modules/tabtab/.completions/slss.zsh
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/alistair.hughes/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alistair.hughes/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/alistair.hughes/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alistair.hughes/google-cloud-sdk/completion.zsh.inc'; fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/alistair.hughes/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/alistair.hughes/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/alistair.hughes/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/alistair.hughes/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias config='/usr/bin/git --git-dir=/Users/alistair.hughes/.cfg/ --work-tree=/Users/alistair.hughes'
