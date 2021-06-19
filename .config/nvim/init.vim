@@ -50,7 +50,6 @@ Plug 'shime/vim-livedown'
 
 " Coc - autocomplete n more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-python'
 
 " Nerd tree
 Plug 'preservim/nerdtree'
@@ -74,6 +73,9 @@ call plug#end()
 "----------------------------------
 "" General Defaults
 "----------------------------------
+
+" use mouse
+set mouse=a
 
 " Set leader to spacebar
 let mapleader = "\<Space>"

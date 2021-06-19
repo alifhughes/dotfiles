@@ -93,7 +93,7 @@ alias weather='curl wttr.in/$CITY'
 alias v='nvim'
 alias vtd='nvim ~/Desktop/todo.markdown'
 alias vcd='nvim ~/Desktop/code.markdown'
-alias vrc='nvim ~/.config/nvim/init.vim'
+alias vnrc='nvim ~/.config/nvim/init.vim'
 alias vrc='nvim ~/.vimrc'
 alias vzrc='nvim ~/.zshrc'
 
@@ -220,3 +220,4 @@ function poetry() {
 
 # Added by Amplify CLI binary installer
 export PATH="$HOME/.amplify/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
